@@ -47,5 +47,5 @@ We welcome contributions from the community. If you'd like to contribute to this
 
 If you have any questions or suggestions, you can contact us via email at [williamwijaya010803@gmail.com].
 
-Thank you for using Glowing 2D Pong!
-# 2D-Pong-Game-Godot
+Thank you for using 2D Pong Game Godot!
+
