@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds7eoir4hqili"]
+
+[ext_resource type="Texture2D" uid="uid://d1jckxinrpc5g" path="res://Asset/Blue Nebula/Blue_Nebula_08-512x512.png" id="1_iun3s"]
+[ext_resource type="Texture2D" uid="uid://pbbl5ceh8s8c" path="res://Asset/Glowing Pong Game Assets/Ball.png" id="2_8wxf7"]
+[ext_resource type="Texture2D" uid="uid://b4gbae7pefm5v" path="res://Asset/Glowing Pong Game Assets/Middle Line.png" id="3_78wbl"]
+[ext_resource type="Script" path="res://Script/Ball.gd" id="3_l18vx"]
+[ext_resource type="Texture2D" uid="uid://besyq33u20i61" path="res://Asset/Glowing Pong Game Assets/Vertical Border.png" id="4_ev2ps"]
+[ext_resource type="Texture2D" uid="uid://c655nktin1gqc" path="res://Asset/Glowing Pong Game Assets/Horizontal Border.png" id="5_xx8xf"]
+[ext_resource type="Texture2D" uid="uid://b3pj4e5y3nl2n" path="res://Asset/Glowing Pong Game Assets/Racket.png" id="6_7j8pw"]
+[ext_resource type="Script" path="res://Script/Paddle.gd" id="8_r02xk"]
+[ext_resource type="Script" path="res://Script/Enemy_AI.gd" id="9_ql2hs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gr68f"]
+radius = 16.1245
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmpxf"]
+size = Vector2(17, 889.926)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyvmb"]
+size = Vector2(19, 875.872)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6b1h"]
+size = Vector2(1651.21, 20.8333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1wa3"]
+size = Vector2(1652.7, 20.8695)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xw2hj"]
+height = 160.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vd0l3"]
+height = 157.419
+
+[node name="Play_Scene" type="Node2D"]
+
+[node name="BlueNebula08-512x512" type="Sprite2D" parent="."]
+position = Vector2(576, 326)
+scale = Vector2(2.25, 1.26562)
+texture = ExtResource("1_iun3s")
+
+[node name="Ball" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(587, 324)
+texture = ExtResource("2_8wxf7")
+script = ExtResource("3_l18vx")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/CharacterBody2D"]
+shape = SubResource("CircleShape2D_gr68f")
+
+[node name="MiddleLine" type="Sprite2D" parent="."]
+modulate = Color(0.32549, 0.290196, 0.72549, 1)
+position = Vector2(586, 322)
+scale = Vector2(2.18, 0.698925)
+texture = ExtResource("3_78wbl")
+
+[node name="VerticalBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0.301961, 1, 1)
+position = Vector2(11, 320.5)
+scale = Vector2(1, 0.731522)
+texture = ExtResource("4_ev2ps")
+
+[node name="Area2D" type="Area2D" parent="VerticalBorder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalBorder/Area2D"]
+position = Vector2(1.5, 4.10104)
+shape = SubResource("RectangleShape2D_vmpxf")
+
+[node name="VerticalBorder2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.301961, 1, 1)
+position = Vector2(1141, 324)
+scale = Vector2(1, 0.747826)
+texture = ExtResource("4_ev2ps")
+
+[node name="Area2D" type="Area2D" parent="VerticalBorder2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalBorder2/Area2D"]
+position = Vector2(0.500122, -0.66861)
+shape = SubResource("RectangleShape2D_jyvmb")
+
+[node name="HorizontalBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(579.5, 9)
+scale = Vector2(0.671023, 1.2)
+texture = ExtResource("5_xx8xf")
+
+[node name="Area2D" type="Area2D" parent="HorizontalBorder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalBorder/Area2D"]
+position = Vector2(-3.72565, 0.416666)
+shape = SubResource("RectangleShape2D_m6b1h")
+
+[node name="HorizontalBorder2" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(583.5, 637.5)
+scale = Vector2(0.671023, 1.15)
+texture = ExtResource("5_xx8xf")
+
+[node name="Area2D" type="Area2D" parent="HorizontalBorder2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalBorder2/Area2D"]
+position = Vector2(-10.4319, 0.434875)
+shape = SubResource("RectangleShape2D_i1wa3")
+
+[node name="Racket" type="Sprite2D" parent="."]
+modulate = Color(0, 0.34902, 1, 1)
+position = Vector2(228, 311)
+scale = Vector2(1, 0.825)
+texture = ExtResource("6_7j8pw")
+script = ExtResource("8_r02xk")
+
+[node name="Area2D" type="Area2D" parent="Racket"]
+position = Vector2(0, -1.21212)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Racket/Area2D"]
+shape = SubResource("CapsuleShape2D_xw2hj")
+
+[node name="Racket2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.34902, 1, 1)
+position = Vector2(1005, 318)
+scale = Vector2(1, 0.775)
+texture = ExtResource("6_7j8pw")
+script = ExtResource("9_ql2hs")
+
+[node name="Area2D" type="Area2D" parent="Racket2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Racket2/Area2D"]
+shape = SubResource("CapsuleShape2D_vd0l3")
+
+[node name="Score_Player" type="Label" parent="."]
+offset_left = 180.0
+offset_top = 53.0
+offset_right = 416.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 48
+text = "Player Score: 0"
+
+[node name="Score_Enemy" type="Label" parent="."]
+offset_left = 760.0
+offset_top = 58.0
+offset_right = 996.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 48
+text = "Enemy Score: 0"
+
+[connection signal="body_entered" from="VerticalBorder/Area2D" to="Ball" method="_on_VerticalBorder_body_entered"]
+[connection signal="body_entered" from="VerticalBorder2/Area2D" to="Ball" method="_on_VerticalBorder2_body_entered"]
+[connection signal="body_entered" from="HorizontalBorder/Area2D" to="Ball" method="_on_HorizontalBorder_body_entered"]
+[connection signal="body_entered" from="HorizontalBorder2/Area2D" to="Ball" method="_on_HorizontalBorder2_body_entered"]
+[connection signal="body_entered" from="Racket/Area2D" to="Ball" method="_on_Paddle_body_entered"]
+[connection signal="body_entered" from="Racket2/Area2D" to="Ball" method="_on_Paddle_body_entered"]
